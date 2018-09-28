@@ -1,0 +1,11 @@
+/baomihua-web/target
+/baomihua-common/target
+
+
+/baomihua-schedule/target
+/baomihua-shiro/target
+/baomihua-api/target
+/baomihua-gen/target
+
+
+/.idea
