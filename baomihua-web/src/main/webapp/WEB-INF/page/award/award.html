@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html style="font-size: 130.667px;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>抽奖</title>
+    <style type="text/css">
+        .qimo8{ overflow:hidden;}
+        .qimo8 .qimo {/*width:99999999px;*/width:8000%;}
+        .qimo8 .qimo div{ float:left;}
+        .qimo8 .qimo ul{float:left;overflow:hidden; zoom:1; }
+        .qimo8 .qimo ul li{float:left; list-style:none; font-size: 24px;margin: 0 1rem;}
+    </style>
+    <link rel="stylesheet" type="text/css" href="${rc.contextPath}/statics/plugins/award/styleCJ.css">
+    <link rel="stylesheet" type="text/css" href="${rc.contextPath}/statics/plugins/layer_mobile/need/layer.css">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div class="shanDeng">
+        <div id="luck">
+            <table style="border-spacing:.08rem .03rem;">
+                <tbody>
+                <tr>
+                    <td class="luck-unit luck-unit-0"><img src="${rc.contextPath}/statics/plugins/award/11.png"></td>
+                    <td class="luck-unit luck-unit-1"><img src="${rc.contextPath}/statics/plugins/award/02.png"></td>
+                    <td class="luck-unit luck-unit-2"><img src="${rc.contextPath}/statics/plugins/award/3.png"></td>
+                </tr>
+                <tr>
+                    <td class="luck-unit luck-unit-7"><img src="${rc.contextPath}/statics/plugins/award/05.png"></td>
+                    <td class="cjBtn" id="btn"></td>
+                    <td class="luck-unit luck-unit-3"><img src="${rc.contextPath}/statics/plugins/award/01.png"></td>
+                </tr>
+                <tr>
+                    <td class="luck-unit luck-unit-6"><img src="${rc.contextPath}/statics/plugins/award/02.png"></td>
+                    <td class="luck-unit luck-unit-5"><img src="${rc.contextPath}/statics/plugins/award/4.png"></td>
+                    <td class="luck-unit luck-unit-4"><img src="${rc.contextPath}/statics/plugins/award/03.png"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <input class="phone" id="phone" v-model="phoneNum" placeholder="输入手机号参与抽奖！" type="text">
+    </div>
+
+    <div class="rule">
+        <p>抽奖活动规则</p>
+        <p>1、单次购买满200元,可抽奖一次单次购买满200元,可抽奖一次单次购买满200元,可抽奖一次;</p>
+        <p>2、</p>
+        <p>3、</p>
+    </div>
+
+    <div class="play">
+        <span></span>
+        <div class="div">
+            <div id="demo" class="qimo8">
+                <div class="qimo">
+                    <div id="demo1">
+                        <ul>
+                            <awardlog :item="item" v-for="item in awardLoglist"></awardlog>
+                        </ul>
+                    </div>
+                    <div id="demo2">
+                        <ul>
+                            <awardlog :item="item" v-for="item in awardLoglist"></awardlog>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="info" style="display : none">
+        <img src="${rc.contextPath}/statics/plugins/award/h5award.png">
+        <p><span class="price-num">一等奖</span></p>
+        <p><span class="price-name">恭喜你获得 苹果笔记本</span></p>
+        <div class="btn-confim">
+            <a href="#" onclick="closeWindow()"  style="color: #fff;text-decoration:none;">确 定</a>
+        </div>
+    </div>
+</div>
+
+
+<script src="${rc.contextPath}/statics/plugins/award/jquery-1.8.3.min.js"></script>
+<script src="${rc.contextPath}/statics/libs/vue.min.js"></script>
+    <script src="${rc.contextPath}/statics/plugins/layer_mobile/layer.js"></script>
+<script src="${rc.contextPath}/statics/plugins/award/common.js"></script>
+<script src="${rc.contextPath}/statics/plugins/award/award.js"></script>
+<script>
+
+</script>
+</body>
+</html>

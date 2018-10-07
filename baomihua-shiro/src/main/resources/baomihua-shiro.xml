@@ -44,6 +44,10 @@
 	        <value>
 	        	/statics/**=anon
 				/api/**=anon
+				/public/**=anon
+				/webpublic/**=anon
+				/price/award.html=anon
+				/award/award.html=anon
 	        	/login.html=anon
 	        	/sys/login=anon
 	        	/captcha.jpg=anon

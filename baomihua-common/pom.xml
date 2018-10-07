@@ -14,6 +14,7 @@
 		<qiniu-version>[7.2.0, 7.2.99]</qiniu-version>
 		<aliyun-oss-version>2.5.0</aliyun-oss-version>
 		<qcloud-cos-version>4.4</qcloud-cos-version>
+		<xstream-version>1.4.9</xstream-version>
 	</properties>
 
 	<dependencies>
@@ -32,5 +33,15 @@
 			<artifactId>cos_api</artifactId>
 			<version>${qcloud-cos-version}</version>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>${xstream-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+    </dependencies>
 </project>

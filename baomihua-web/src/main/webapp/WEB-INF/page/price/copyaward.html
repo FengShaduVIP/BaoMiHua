@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>抽奖</title>
+	<script src="${rc.contextPath}/statics/plugins/price/img/jquery-2.2.0.min.js" type="text/javascript"></script>
+	<script src="${rc.contextPath}/statics/libs/vue.min.js"></script>
+	<script src="${rc.contextPath}/statics/plugins/toastr/toastr.min.js"></script>
+	<link rel="stylesheet" href="${rc.contextPath}/statics/css/bootstrap.min.css">
+	<link href="${rc.contextPath}/statics/plugins/toastr/toastr.min.css" rel="stylesheet" type="text/css">
+	<link href="${rc.contextPath}/statics/plugins/price/img/layer.css" rel="stylesheet" type="text/css">
+	<link href="${rc.contextPath}/statics/plugins/price/img/modal.css" rel="stylesheet" type="text/css">
+	<link href="${rc.contextPath}/statics/plugins/price/img/touming.css" rel="stylesheet" type="text/css">
+	<link type="text/css" rel="stylesheet" href="chrome-extension://pioclpoplcdbaefihamjohnefbikjilc/content.css">
+	<style>
+		*, :after, :before {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		main{padding-top: 3em;}
+		table {
+			border-spacing: 0;
+			border-collapse: collapse;
+			text-align: center;
+		}
+
+		.draw {
+			width: 560px;
+			height: 600px;
+			margin: 0 auto;
+			padding:51px;
+			background-image: url(${rc.contextPath}/statics/plugins/price/img/bg.png);
+			background-repeat: no-repeat;
+			background-size: 100%;
+		}
+
+		.draw .item {
+			width: 150px;
+			height: 150px;
+			background-image: url(${rc.contextPath}/statics/plugins/price/img/bg1.png);
+			background-repeat: no-repeat;
+			background-size: 96%;
+		}
+
+		.draw .item.active {
+			background-image: url(${rc.contextPath}/statics/plugins/price/img/bg2.png);
+			background-repeat: no-repeat;
+			background-size: 100%;
+		}
+
+		.draw .img {
+			display: table-cell;
+			width: 150px;
+			height: 61px;
+			vertical-align: middle;
+			text-align: center;
+		}
+
+		.draw .img img {
+			vertical-align: top;
+		}
+
+		.draw .gap {
+			width: 5px;
+		}
+
+		.draw .gap-2 {
+			height: 5px;
+		}
+
+		.draw .name {
+			display: block;
+			margin-top: 10px;
+			font-size: 14px;
+		}
+
+		.draw .draw-btn {
+			display: block;
+			height: 150px;
+			line-height: 150px;
+			border-radius: 20px;
+			font-size: 25px;
+			font-weight: 700;
+			text-decoration: none;
+			background-image: url(${rc.contextPath}/statics/plugins/price/img/bg3.png);
+			background-repeat: no-repeat;
+			background-size: 96%;
+		}
+		.phone{
+			width:90%;
+			margin-left: 5%;
+			margin-right: 5%;
+			display: block;
+			line-height: 2em;
+			color: #666;
+			font-size: 30px;
+			text-align: center;
+			border-radius: 10px;
+			background-color: #FFF
+		}
+	</style>
+</head>
+<body style="background: #f02d2f;">
+	<div id="rrapp" v-cloak>
+		<div class="draw" id="lottery">
+			<table style="">
+				<tbody>
+				<tr>
+					<td class="item lottery-unit lottery-unit-0">
+						<div class="img">
+							<img src="${rc.contextPath}/statics/plugins/price/img/img1.png" alt="">
+						</div>
+						<span class="name">iPhone8 plus 256G</span>
+					</td>
+					<td class="gap"></td>
+					<td class="item lottery-unit lottery-unit-1">
+						<div class="img">
+							<img src="${rc.contextPath}/statics/plugins/price/img/img2.png" alt="">
+						</div>
+						<span class="name">美图V6手机</span>
+					</td>
+					<td class="gap"></td>
+					<td class="item lottery-unit lottery-unit-2">
+						<div class="img">
+							<img src="${rc.contextPath}/statics/plugins/price/img/img3.png" alt="">
+						</div>
+						<span class="name">AJ黑金正版鞋</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="gap-2" colspan="5"></td>
+				</tr>
+				<tr>
+					<td class="item lottery-unit lottery-unit-7">
+						<div class="img">
+							<img src="${rc.contextPath}/statics/plugins/price/img/img4.png" alt="">
+						</div>
+						<span class="name">加强版refa</span>
+					</td>
+					<td class="gap"></td>
+					<td class="">
+						<a class="draw-btn" href="javascript:"></a>
+					</td>
+					<td class="gap"></td>
+					<td class="item lottery-unit lottery-unit-3">
+						<div class="img">
+							<img src="${rc.contextPath}/statics/plugins/price/img/img5.png" alt="">
+						</div>
+						<span class="name">888现金红包</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="gap-2" colspan="5"></td>
+				</tr>
+				<tr>
+					<td class="item lottery-unit lottery-unit-6">
+						<div class="img">
+							<img src="${rc.contextPath}/statics/plugins/price/img/img7.png" alt="">
+						</div>
+						<span class="name">coco香水</span>
+					</td>
+					<td class="gap"></td>
+					<td class="item lottery-unit lottery-unit-5">
+						<div class="img">
+							<img src="${rc.contextPath}/statics/plugins/price/img/img6.png" alt="">
+						</div>
+						<span class="name">520现金红包</span>
+					</td>
+					<td class="gap"></td>
+					<td class="item lottery-unit lottery-unit-4">
+						<div class="img">
+							<img src="${rc.contextPath}/statics/plugins/price/img/img8.png" alt="">
+						</div>
+						<span class="name">MAC口红</span>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div style="width: 560px;margin: 0 auto;">
+			<input class="phone" id="phone" v-model="phoneNum" placeholder="输入手机号参与抽奖！" type="text">
+		</div>
+
+		<!--<div class="main-footer">
+			<a href="#" class="footer-a2">中奖记录>></a>
+			<a href="#" class="footer-a" data-toggle="modal" data-target="#myModal">活动规则>></a>
+		</div>-->
+	</div>
+
+	<div id="info" style="display : none">
+		<img src="${rc.contextPath}/statics/plugins/price/img/h5award.png">
+		<h1>一等奖</h1>
+		<div onclick="hideWindow()">
+			<h3 >恭喜你获得MAC口红</h3>
+		</div>
+	</div>
+
+	<!-- 温馨提示 -->
+	<div id="myModal" class="modal fade s3" tabindex="-1" data-replace="true" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="hd-title"></div>
+			<a href="#" class="close2"></a>
+			<div class="modal-body" style="height: 250px; overflow: auto;">
+
+				<p>1、活动时间：2016年10月18日——2016年12月31日。<br/>
+					2、活动期间，主套餐内使用流量每达300M，即可参与抽奖一次（例：600M即2次，900M即3次，以此类推）。<br/>
+					3、活动抽奖只能在当月进行，抽奖机会次数当月月底清零，次月重新计算。<br/>
+					4、抽奖奖池：30元天翼手机话费（赠送话费不可抵扣SP业务、国际漫游、国际长话）、100M省内流量、300M省内流量、500M省内流量。<br/>
+					5、话费和流量奖品次月10日前到账。获赠的流量包到账后，仅限获赠当月使用。流量超出后由号码本身套餐或者标准资费来收取。天翼副号、天翼小号、6分卡（0元保底）、4G 0元日租卡、上网卡、个人定制及时长型套餐等不能加装流量包套餐的用户不能订购，详询10000号。<br/>
+					<span>备注：非实名制用户不能受理流量包，请进行实名补登记后再购买。 </span></p>
+
+			</div>
+
+		</div>
+	</div>
+
+	<script src="${rc.contextPath}/statics/libs/bootstrap.min.js"></script>
+	<script src="${rc.contextPath}/statics/plugins/price/img/layer.js"></script>
+	<script src="${rc.contextPath}/statics/plugins/price/bmhprize.js"></script>
+	<script type="text/javascript">
+        var indexNum = 0;
+        var lottery = {
+            sixNum:5,
+            eightNum:7,
+            index: 10000, //当前转动到哪个位置，起点位置
+            count: 8, //总共有多少个位置
+            timer: 0, //setTimeout的ID，用clearTimeout清除
+            speed: 20, //初始转动速度
+            times: 0, //转动次数
+            cycle: 5, //转动基本次数：即至少需要转动多少次再进入抽奖环节
+            prize: -1, //中奖位置
+            init: function() {
+                if($('#lottery').find('.lottery-unit').length > 0) {
+                    $lottery = $('#lottery');
+                    $units = $lottery.find('.lottery-unit');
+                    this.obj = $lottery;
+                    this.count = $units.length;
+                    $lottery.find('.lottery-unit.lottery-unit-10000').addClass('active');
+                };
+            },
+            roll: function() {
+                var index = this.index;
+                var count = this.count;
+                var lottery = this.obj;
+                $(lottery).find('.lottery-unit.lottery-unit-' + index).removeClass('active');
+                index += 1;
+                if(index > count - 1) {
+                    index = 0;
+                };
+                $(lottery).find('.lottery-unit.lottery-unit-' + index).addClass('active');
+                this.index = index;
+                return false;
+            },
+            stop: function(index) {
+                this.prize = index;
+                return false;
+            }
+        };
+
+        function roll() {
+            lottery.times += 1;
+            lottery.roll(); //转动过程调用的是lottery的roll方法，这里是第一次调用初始化
+            if(lottery.times > lottery.cycle + 10 && lottery.prize == lottery.index) {
+                //转动结束 显示弹窗
+                clearTimeout(lottery.timer);
+                layer.open({
+                    type: 1,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    shade: false,
+                    maxmin: false, //开启最大化最小化按钮
+                    area: ['893px', '600px'],
+                    content: $("#info").html()
+                });
+                lottery.prize = -1;
+                lottery.times = 0;
+                click = false;
+            } else {
+                if(lottery.times < lottery.cycle) {
+                    lottery.speed -= 10;
+                } else if(lottery.times == lottery.cycle) {
+                    var index = Math.random() * (lottery.count) | 0; //静态演示，随机产生一个奖品序号，实际需请求接口产生
+                    if(index>4){
+                        lottery.prize = lottery.sixNum;
+                    }else{
+                        lottery.prize = lottery.eightNum;
+                    }
+                } else {
+                    if(lottery.times > lottery.cycle + 10 && ((lottery.prize == 0 && lottery.index == 7) || lottery.prize == lottery.index + 1)) {
+                        lottery.speed += 110;
+                    } else {
+                        lottery.speed += 20;
+                    }
+                }
+                if(lottery.speed < 40) {
+                    lottery.speed = 40;
+                };
+                lottery.timer = setTimeout(roll, lottery.speed); //循环调用
+            }
+            return false;
+        }
+
+        var click = false;
+
+        window.onload = function() {
+            toastr.options = {
+                closeButton: false,
+				debug: false,
+				progressBar: false,
+				positionClass: "toast-top-center",
+				onclick: null,
+				showDuration: "300",
+				hideDuration: "1000",
+				// timeOut: "1500",
+				extendedTimeOut: "1000",
+				showEasing: "swing",
+				hideEasing: "linear",
+				showMethod: "fadeIn",
+				hideMethod: "fadeOut"
+            };
+
+            lottery.init();
+            $('.draw-btn').click(function() {
+                /**
+                 * 检验手机号代码
+                 */
+                var phoneNum = vm.phoneNum;
+                if(!checkPhone(vm.phoneNum)){
+                    toastr.warning("填写正确手机号！");
+                    return;
+                }
+                $.get("../webpublic/checkAwardTimes?phoneNum="+phoneNum, function(r){
+                    r =  JSON.parse(r);
+                    doAction(r.data);
+                });
+            });
+        };
+
+        function doAction(isCanDo){
+            if(!isCanDo){
+                toastr.error("该手机号目前无法参与抽奖。");
+                return;
+            }
+            if(click) { //click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
+                return false;
+            } else {
+                lottery.speed = 100;
+                roll(); //转圈过程不响应click事件，会将click置为false
+                click = true; //一次抽奖完成后，设置click为true，可继续抽奖
+                return false;
+            }
+        }
+
+        var checkPhone = function(a)
+        {
+            var patrn = /^((?:13|14|15|16|17|18|19)\d{9}|0(?:10|2\d|[3-9]\d{2})[1-9]\d{6,7})$/;
+            if (!patrn.exec(a)) return false;
+            return true;
+        };
+
+        function hideWindow(){
+            layer.close(indexNum++);
+        }
+        //关闭活动规则
+        $(".close2").click(function(){
+            $('#myModal').modal('hide');
+        });
+
+	</script>
+</body>
+</html>

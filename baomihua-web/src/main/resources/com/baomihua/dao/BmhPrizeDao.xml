@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baomihua.dao.BmhPrizeDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.baomihua.entity.BmhPrizeEntity" id="bmhPrizeMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="picUrl" column="pic_url"/>
+        <result property="sort" column="sort"/>
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="createTime" column="create_time"/>
+        <result property="isDel" column="is_del"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="com.baomihua.entity.BmhPrizeEntity">
+		select * from bmh_prize where id = #{value}
+	</select>
+
+	<select id="queryAwardList" resultType="com.baomihua.entity.BmhPrizeEntity">
+		select * from bmh_prize where is_del = '1' ORDER BY sort ASC
+	</select>
+
+	<select id="queryList" resultType="com.baomihua.entity.BmhPrizeEntity">
+		select * from bmh_prize
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from bmh_prize 
+	</select>
+	 
+	<insert id="save" parameterType="com.baomihua.entity.BmhPrizeEntity">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+			select UUID()
+		</selectKey>
+		insert into bmh_prize
+		(
+			`id`, 
+			`name`, 
+			`pic_url`, 
+			`sort`, 
+			`user_id`, 
+			`user_name`, 
+			`create_time`, 
+			`is_del`
+		)
+		values
+		(
+			#{id}, 
+			#{name}, 
+			#{picUrl}, 
+			#{sort}, 
+			#{userId}, 
+			#{userName}, 
+			#{createTime}, 
+			#{isDel}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.baomihua.entity.BmhPrizeEntity">
+		update bmh_prize 
+		<set>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="picUrl != null">`pic_url` = #{picUrl}, </if>
+			<if test="sort != null">`sort` = #{sort}, </if>
+			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="userName != null">`user_name` = #{userName}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="isDel != null">`is_del` = #{isDel}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from bmh_prize where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from bmh_prize where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

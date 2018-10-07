@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baomihua.dao.BmhOrderManageDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.baomihua.entity.BmhOrderManageEntity" id="bmhOrderManageMap">
+        <result property="id" column="id"/>
+        <result property="orderTyp" column="order_typ"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="vipName" column="vip_name"/>
+        <result property="phoneNum" column="phone_num"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createTime" column="create_time"/>
+        <result property="awardTimes" column="award_times"/>
+		<result property="priceNum" column="price_num"/>
+        <result property="isDel" column="is_del"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="com.baomihua.entity.BmhOrderManageEntity">
+		select * from bmh_order_manage where id = #{value}
+	</select>
+
+	<select id="queryListByPhoneNum" resultType="com.baomihua.entity.BmhOrderManageEntity">
+		select * from bmh_order_manage where is_del='0' AND phone_num = #{value} order by create_time desc
+	</select>
+
+	<select id="queryList" resultType="com.baomihua.entity.BmhOrderManageEntity">
+		select * from bmh_order_manage
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from bmh_order_manage 
+	</select>
+	 
+	<insert id="save" parameterType="com.baomihua.entity.BmhOrderManageEntity">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+			select UUID()
+		</selectKey>
+		insert into bmh_order_manage
+		(
+			`id`, 
+			`order_typ`,
+			`order_num`, 
+			`vip_name`, 
+			`phone_num`, 
+			`province`, 
+			`city`,
+			`create_user`, 
+			`create_time`, 
+			`award_times`,
+			`price_num`,
+			`is_del`
+		)
+		values
+		(
+			#{id}, 
+			#{orderTyp},
+			#{orderNum}, 
+			#{vipName}, 
+			#{phoneNum}, 
+			#{province}, 
+			#{city},
+			#{createUser}, 
+			#{createTime}, 
+			#{awardTimes},
+			#{priceNum},
+			#{isDel}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.baomihua.entity.BmhOrderManageEntity">
+		update bmh_order_manage 
+		<set>
+			<if test="orderTyp != null">`order_typ` = #{orderTyp}, </if>
+			<if test="orderNum != null">`order_num` = #{orderNum}, </if>
+			<if test="vipName != null">`vip_name` = #{vipName}, </if>
+			<if test="phoneNum != null">`phone_num` = #{phoneNum}, </if>
+			<if test="province != null">`province` = #{province}, </if>
+			<if test="city != null">`city` = #{city}, </if>
+			<if test="createUser != null">`create_user` = #{createUser}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="awardTimes != null">`award_times` = #{awardTimes}, </if>
+			<if test="priceNum != null">`price_num` = #{priceNum}, </if>
+			<if test="isDel != null">`is_del` = #{isDel}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from bmh_order_manage where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from bmh_order_manage where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

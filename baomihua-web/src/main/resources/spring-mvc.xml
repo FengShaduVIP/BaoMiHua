@@ -38,7 +38,7 @@
             </bean>
         </mvc:message-converters>
 	</mvc:annotation-driven>
-	
+
 	<!-- Velocity视图解析器    默认视图  -->
 	<bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 		<property name="contentType" value="text/html;charset=UTF-8" />

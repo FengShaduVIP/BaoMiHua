@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="${rc.contextPath}/statics/plugins/webuploader/webuploader.css">
+    <link rel="stylesheet" type="text/css" href="${rc.contextPath}/statics/plugins/webuploader/webuploader-demo.css">
+    <title>demo</title>
+    #parse("sys/header.html")
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div class="layui-fluid" style="padding: 20px">
+        <div class="ibox-content">
+
+        </div>
+        <div class="ibox-content">
+            <div class="page-container">
+                <p>您可以尝试文件拖拽，使用QQ截屏工具，然后激活窗口后粘贴，或者点击添加图片按钮，来体验此demo.</p>
+                <div id="uploader" class="wu-example">
+                    <div class="queueList">
+                        <div id="dndArea" class="placeholder">
+                            <div id="filePicker"></div>
+                            <p>或将照片拖到这里，单次最多可选300张</p>
+                        </div>
+                    </div>
+                    <div class="statusBar" style="display:none;">
+                        <div class="progress">
+                            <span class="text">0%</span>
+                            <span class="percentage"></span>
+                        </div>
+                        <div class="info"></div>
+                        <div class="btns">
+                            <div id="filePicker2"></div>
+                            <div class="uploadBtn">开始上传</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="${rc.contextPath}/js/plugins/MarkPic.js?_${date.systemTime}"></script>
+<script src="${rc.contextPath}/statics/plugins/webuploader/webuploader.js?_${date.systemTime}"></script>
+<script src="${rc.contextPath}/statics/plugins/webuploader/webuploader-demo.js?_${date.systemTime}"></script>
+<!-- Web Uploader -->
+<script type="text/javascript">
+// 添加全局站点信息
+var BASE_URL = '${rc.contextPath}/statics/plugins/webuploader/webuploader';
+</script>
+</body>
+</html>
