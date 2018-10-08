@@ -1,10 +1,11 @@
 body{
-		background-image: url(bg-img.png);
-		background-repeat: no-repeat;
-		background-size: 100% 100%;
-		width: 7.5rem;
-		height: 9.7rem;
-		padding-top: 3.6rem;
+	z-index: -1;
+	background-image: url(bg-img.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	width: 7.5rem;
+	height: 9.7rem;
+	padding-top: 3.6rem;
 	}
 body:after{
 	position: relative;
@@ -148,5 +149,9 @@ body:after{
 	position: absolute;
 	top: 88%;
 	margin: 0 auto
+}
+
+.background-class {
+	background-image: url(bg.png);
 }
 
