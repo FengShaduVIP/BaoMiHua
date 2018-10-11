@@ -66,9 +66,11 @@ public class SysLogAspect {
 		sysLog.setIp(IPUtils.getIpAddr(request));
 		
 		//用户名
-		String username = ShiroUtils.getUserEntity().getUsername();
-		sysLog.setUsername(username);
-		
+		if(ShiroUtils.getUserEntity()!=null){
+			String username = ShiroUtils.getUserEntity().getUsername();
+			sysLog.setUsername(username);
+		}
+
 		sysLog.setCreateDate(new Date());
 		//保存系统日志
 		sysLogService.save(sysLog);

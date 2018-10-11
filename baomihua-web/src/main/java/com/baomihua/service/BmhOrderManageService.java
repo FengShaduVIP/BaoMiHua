@@ -29,4 +29,5 @@ public interface BmhOrderManageService {
 	void deleteBatch(String[] ids);
 
     Map<String, Object> checkAeardTimes(String phoneNum);
+
 }

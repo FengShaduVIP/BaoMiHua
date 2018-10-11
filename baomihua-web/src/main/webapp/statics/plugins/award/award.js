@@ -30,7 +30,7 @@ var vm = new Vue({
         awardLoglist:[],//获奖记录
 		phoneNum:null,
 		isCanDo:false,
-		priceNum:null,
+		priceNum:1,
 		priceListData:[
 			{name:"iPhone8 plus",index:1,price:"一等奖"},
             {name:"美图V6手机",index:2,price:"二等奖"},
