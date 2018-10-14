@@ -7,12 +7,11 @@ function basePath() {   
 	// 获取主机地址，如： http://localhost:8080   
 	var localhostPath = curWwwPath.substring(0, pos);   
 	// 获取带"/"的项目名，如：/ems   
-	var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);   
+	//var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);   
 	// 获取项目的basePath   http://localhost:8080/ems/   
-	var basePath = localhostPath + projectName + "/";   
-	return localhostPath;
+	//var basePath = localhostPath + projectName + "/";   
+	return localhostPath+"/";
 };
-
 
 $(function () {
     $('.fancybox').fancybox({
@@ -26,14 +25,18 @@ $(function () {
 			{ label: 'id', name: 'id', index: 'id', width: 50, key: true,hidden:true },
 			{ label: '名称', name: 'name', index: 'name', width: 80 },
 			{ label: '图片', name: 'picUrl', index: 'pic_url', width: 80,formatter:function(urlPic){
-				return '<a class="fancybox" href="../'+urlPic+'">'+
-					'<img class="price-pic" alt="image" src="../'+urlPic+'"/>'+
+                urlPic = basePath()+urlPic;
+				return '<a class="fancybox" href="'+urlPic+'">'+
+					'<img class="price-pic" alt="image" src="'+urlPic+'"/>'+
 				   '</a>';
 				}
 			},
 			{ label: '位置', name: 'sort', index: 'sort', width: 80 },
 			{ label: '创建人', name: 'userId', index: 'user_id', width: 80 }, 			
-			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 }
+			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80,formatter:function(value){
+					return T.dateFormat(value,1);
+            	}
+			}
         ],
 		viewrecords: true,
         height: 385,

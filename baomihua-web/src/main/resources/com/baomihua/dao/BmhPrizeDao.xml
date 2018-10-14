@@ -19,6 +19,10 @@
 		select * from bmh_prize where id = #{value}
 	</select>
 
+	<select id="queryObjectByNum" resultType="com.baomihua.entity.BmhPrizeEntity">
+		select * from bmh_prize where sort = #{value} and is_del = '1'
+	</select>
+
 	<select id="queryAwardList" resultType="com.baomihua.entity.BmhPrizeEntity">
 		select * from bmh_prize where is_del = '1' ORDER BY sort ASC
 	</select>
@@ -30,7 +34,7 @@
                 order by ${sidx} ${order}
             </when>
 			<otherwise>
-                order by id desc
+				order by create_time DESC
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">

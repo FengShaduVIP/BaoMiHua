@@ -13,7 +13,10 @@ $(function () {
             { label: '客户省份', name: 'province', index: 'province', width: 80 },
 			{ label: '客户城市', name: 'city', index: 'city', width: 80 },
 			{ label: '创建人', name: 'createUser', index: 'create_user', width: 80 }, 			
-			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 }
+			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 ,formatter:function(value){
+					return T.dateFormat(value,1);
+				}
+            }
         ],
 		viewrecords: true,
         height: 385,

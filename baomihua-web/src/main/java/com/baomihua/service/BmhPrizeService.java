@@ -15,6 +15,8 @@ import java.util.Map;
 public interface BmhPrizeService {
 	
 	BmhPrizeEntity queryObject(String id);
+
+	BmhPrizeEntity queryObjectByNum(String priceNum);
 	
 	List<BmhPrizeEntity> queryList(Map<String, Object> map);
 	

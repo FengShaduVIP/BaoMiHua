@@ -7,6 +7,7 @@ import com.baomihua.entity.SysUserEntity;
 import com.baomihua.entity.UserEntity;
 import com.baomihua.utils.*;
 import org.apache.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,7 +43,7 @@ public class BmhPrizeController {
 	 * 列表
 	 */
 	@RequestMapping("/list")
-	//@RequiresPermissions("bmhprize:list")
+	@RequiresPermissions("bmhprize:list")
 	public R list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -65,7 +66,7 @@ public class BmhPrizeController {
 	 * 信息
 	 */
 	@RequestMapping("/info/{id}")
-	//@RequiresPermissions("bmhprize:info")
+	@RequiresPermissions("bmhprize:info")
 	public R info(@PathVariable("id") String id){
 		BmhPrizeEntity bmhPrize = bmhPrizeService.queryObject(id);
 		
@@ -76,7 +77,7 @@ public class BmhPrizeController {
 	 * 保存
 	 */
 	@RequestMapping("/save")
-	//@RequiresPermissions("bmhprize:save")
+	@RequiresPermissions("bmhprize:save")
 	public R save(HttpServletRequest request){
 		SysUserEntity user = ShiroUtils.getUserEntity();
 		try {
@@ -87,7 +88,7 @@ public class BmhPrizeController {
 			bmhPrize.setIsDel(Integer.parseInt(request.getParameter("isDel")+""));
 			bmhPrize.setUserId(user.getUserId()+"");
 			bmhPrize.setUserId(user.getUsername());
-			String filePath = "upload/pricePic";
+			String filePath = "upload/img/pricePic";
 			String picUrl = ImageUploadUtil.upload(request,filePath);
 			bmhPrize.setPicUrl(filePath+"/"+picUrl);
 			bmhPrizeService.save(bmhPrize);
@@ -102,7 +103,7 @@ public class BmhPrizeController {
 	 * 修改
 	 */
 	@RequestMapping("/update")
-	//@RequiresPermissions("bmhprize:update")
+	@RequiresPermissions("bmhprize:update")
 	public R update(@RequestBody BmhPrizeEntity bmhPrize){
 		bmhPrizeService.update(bmhPrize);
 		
@@ -113,10 +114,9 @@ public class BmhPrizeController {
 	 * 删除
 	 */
 	@RequestMapping("/delete")
-	//@RequiresPermissions("bmhprize:delete")
+	@RequiresPermissions("bmhprize:delete")
 	public R delete(@RequestBody String[] ids){
 		bmhPrizeService.deleteBatch(ids);
-		
 		return R.ok();
 	}
 	

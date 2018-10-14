@@ -14,4 +14,6 @@ import java.util.List;
 public interface BmhPrizeDao extends BaseDao<BmhPrizeEntity> {
 
     List<BmhPrizeEntity> queryAwardList();
+
+    BmhPrizeEntity queryObjectByNum(String priceNum);
 }
