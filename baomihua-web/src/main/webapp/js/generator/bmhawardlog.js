@@ -8,7 +8,10 @@ $(function () {
 			{ label: '手机号', name: 'phoneNum', index: 'phone_num', width: 80 }, 			
 			{ label: '奖品号码', name: 'priceNum', index: 'price_num', width: 80 }, 			
 			{ label: '奖品名称', name: 'priceName', index: 'price_name', width: 80 }, 			
-			{ label: '抽奖时间', name: 'createTime', index: 'create_time', width: 80 }
+			{ label: '抽奖时间', name: 'createTime', index: 'create_time', width: 80,formatter:function(value){
+					return T.dateFormat(value,1);
+				}
+            }
         ],
 		viewrecords: true,
         height: 385,

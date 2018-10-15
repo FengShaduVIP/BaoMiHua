@@ -128,4 +128,18 @@ public class BmhPrizeEntity implements Serializable {
 	public Integer getIsDel() {
 		return isDel;
 	}
+
+	@Override
+	public String toString() {
+		return "BmhPrizeEntity{" +
+				"id='" + id + '\'' +
+				", name='" + name + '\'' +
+				", picUrl='" + picUrl + '\'' +
+				", sort=" + sort +
+				", userId='" + userId + '\'' +
+				", userName='" + userName + '\'' +
+				", createTime=" + createTime +
+				", isDel=" + isDel +
+				'}';
+	}
 }

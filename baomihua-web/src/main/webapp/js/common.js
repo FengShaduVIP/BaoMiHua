@@ -1,5 +1,6 @@
 //jqGrid的配置信息
 $.jgrid.defaults.width = 1000;
+$.jgrid.defaults.height = 'auto';
 $.jgrid.defaults.responsive = true;
 $.jgrid.defaults.styleUI = 'Bootstrap';
 
@@ -16,6 +17,34 @@ var url = function(name) {
 	if(r!=null)return  unescape(r[2]); return null;
 };
 T.p = url;
+
+/**
+ *
+ * @param date 时间差
+ * @param type 转换格式 1：yyyy/MM/dd HH:mm:ss 2： yyyy/MM/dd
+ */
+var strFormatDate = function (date,type) {
+    var d = new Date(date * 1000);    //根据时间戳生成的时间对象
+    var dateValue = new Date();
+    if(type==1){
+        dateValue = (d.getFullYear()) + "-" +
+        (d.getMonth() + 1) + "-" +
+        (d.getDate()) + " " +
+        (d.getHours()) + ":" +
+        (d.getMinutes()) + ":" +
+        (d.getSeconds());
+	}else if(type==2){
+        dateValue = (d.getFullYear()) + "-" +
+            (d.getMonth() + 1) + "-" +
+            (d.getDate()) + " " +
+            (d.getHours()) + ":" +
+            (d.getMinutes()) + ":" +
+            (d.getSeconds());
+	}
+	return dateValue;
+}
+
+T.dateFormat = strFormatDate;
 
 //全局配置
 $.ajaxSetup({
@@ -72,3 +101,4 @@ function getSelectedRows() {
     
     return grid.getGridParam("selarrrow");
 }
+

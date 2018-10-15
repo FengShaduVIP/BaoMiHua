@@ -114,4 +114,17 @@ public class BmhAwardLogEntity implements Serializable {
 	public String getAwardId() {
 		return awardId;
 	}
+
+	@Override
+	public String toString() {
+		return "BmhAwardLogEntity{" +
+				"id='" + id + '\'' +
+				", userName='" + userName + '\'' +
+				", phoneNum='" + phoneNum + '\'' +
+				", priceNum='" + priceNum + '\'' +
+				", priceName='" + priceName + '\'' +
+				", createTime=" + createTime +
+				", awardId='" + awardId + '\'' +
+				'}';
+	}
 }

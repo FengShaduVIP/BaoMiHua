@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
@@ -19,7 +20,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
  * @Description: 图片上传工具类，包括ckeditor操作
  */
 public class ImageUploadUtil {
-
+    private static Logger logger = Logger.getLogger(ImageUploadUtil.class);
     // 图片类型
     private static List<String> fileTypes = new ArrayList<String>();
 
@@ -73,8 +74,8 @@ public class ImageUploadUtil {
                             continue;
                         }
                         // 获得上传路径的绝对路径地址(/upload)-->
-                        String realPath = request.getSession().getServletContext().getRealPath("/" + DirectoryName);
-                        System.out.println(realPath);
+                        String realPath ="/mnt/upload/img/pricePic";//request.getSession().getServletContext().getRealPath("/" + DirectoryName);
+                        logger.info("上传文件路径："+realPath);
                         // 如果路径不存在，则创建该路径
                         File realPathDirectory = new File(realPath);
                         if (realPathDirectory == null || !realPathDirectory.exists()) {

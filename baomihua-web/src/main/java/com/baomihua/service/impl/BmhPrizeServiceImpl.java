@@ -21,7 +21,12 @@ public class BmhPrizeServiceImpl implements BmhPrizeService {
 	public BmhPrizeEntity queryObject(String id){
 		return bmhPrizeDao.queryObject(id);
 	}
-	
+
+	@Override
+	public BmhPrizeEntity queryObjectByNum(String priceNum) {
+		return bmhPrizeDao.queryObjectByNum(priceNum);
+	}
+
 	@Override
 	public List<BmhPrizeEntity> queryList(Map<String, Object> map){
 		return bmhPrizeDao.queryList(map);

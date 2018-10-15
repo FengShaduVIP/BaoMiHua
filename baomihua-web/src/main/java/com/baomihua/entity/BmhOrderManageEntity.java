@@ -181,4 +181,22 @@ public class BmhOrderManageEntity implements Serializable {
 	public Integer getIsDel() {
 		return isDel;
 	}
+
+	@Override
+	public String toString() {
+		return "BmhOrderManageEntity{" +
+				"id='" + id + '\'' +
+				", orderTyp='" + orderTyp + '\'' +
+				", orderNum='" + orderNum + '\'' +
+				", vipName='" + vipName + '\'' +
+				", phoneNum='" + phoneNum + '\'' +
+				", province='" + province + '\'' +
+				", city='" + city + '\'' +
+				", createUser='" + createUser + '\'' +
+				", createTime=" + createTime +
+				", awardTimes=" + awardTimes +
+				", priceNum='" + priceNum + '\'' +
+				", isDel=" + isDel +
+				'}';
+	}
 }

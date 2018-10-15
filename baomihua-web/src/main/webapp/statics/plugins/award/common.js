@@ -140,7 +140,11 @@ function closeWindow() {
 
 
 function doAction(r){
-    if(!r.data){
+    luck.speed = 100;
+    roll(); //转圈过程不响应click事件，会将click置为false
+    click = true; //一次抽奖完成后，设置click为true，可继续抽奖
+    return false;
+   /* if(!r.data){
         layer.open({
             content: '该手机号目前无法参与抽奖。'
             ,style: 'background-color:#E84A54; color:#fff; border:none;font-size:40px;'
@@ -151,12 +155,9 @@ function doAction(r){
         if(click) { //click控制一次抽奖过程中不能重复点击抽奖按钮，后面的点击不响应
             return false;
         } else {
-            luck.speed = 100;
-            roll(); //转圈过程不响应click事件，会将click置为false
-            click = true; //一次抽奖完成后，设置click为true，可继续抽奖
-            return false;
+
         }
-    }
+    }*/
 }
 
 var checkPhone = function(a)
