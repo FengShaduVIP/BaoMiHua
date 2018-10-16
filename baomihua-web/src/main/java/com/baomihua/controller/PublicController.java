@@ -1,6 +1,7 @@
 package com.baomihua.controller;
 
 import com.baomihua.Utils.ToEntityObject;
+import com.baomihua.dao.BmhAwardRuleDao;
 import com.baomihua.entity.BmhAwardLogEntity;
 import com.baomihua.entity.BmhOrderManageEntity;
 import com.baomihua.entity.BmhPrizeEntity;
@@ -39,12 +40,29 @@ public class PublicController {
     @Autowired
     private BmhAwardLogService bmhAwardLogService;
 
+    @Autowired
+    private BmhAwardRuleDao bmhAwardRuleDao;
+
 
     @RequestMapping("/checkAwardTimes")
     public R checkAeardTimes(@RequestParam(value = "phoneNum") String phoneNum) {
         phoneNum = SQLFilter.sqlInject(phoneNum);
         Map<String, Object> map = bmhOrderManageService.checkAeardTimes(phoneNum);
         return R.ok(map);
+    }
+
+    /**
+     * 查询抽奖规则说明
+     * @param awardId
+     * @param request
+     * @return
+     */
+    @RequestMapping("/queryRuleList")
+    public R queryRuleList(@RequestParam(value = "awardId") String awardId,HttpServletRequest request) {
+        Map<String,Object> returnMap = new HashMap<>();
+        List<Map<String,Object>> map =  bmhAwardRuleDao.queryRuleList(awardId);
+        returnMap.put("data",map);
+        return R.ok(returnMap);
     }
 
     /**

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baomihua.dao.BmhAwardRuleDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.baomihua.entity.BmhAwardRuleEntity" id="bmhAwardRuleMap">
+        <result property="id" column="id"/>
+        <result property="sort" column="sort"/>
+        <result property="context" column="context"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createUser" column="create_user"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="awardId" column="award_id"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="com.baomihua.entity.BmhAwardRuleEntity">
+		select * from bmh_award_rule where id = #{value}
+	</select>
+
+	<select id="queryRuleList" resultType="java.util.HashMap">
+		select t.sort,t.context from bmh_award_rule t
+		<choose>
+			<when test="awardId != null and awardId.trim() != ''">
+				where t.awardId = #{awardId}
+			</when>
+		</choose>
+		 order by t.sort ASC
+	</select>
+
+	<select id="queryList" resultType="com.baomihua.entity.BmhAwardRuleEntity">
+		select * from bmh_award_rule
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by sort ASC
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from bmh_award_rule 
+	</select>
+	 
+	<insert id="save" parameterType="com.baomihua.entity.BmhAwardRuleEntity">
+		insert into bmh_award_rule
+		(
+			`id`, 
+			`sort`, 
+			`context`, 
+			`create_time`, 
+			`create_user`, 
+			`update_time`, 
+			`award_id`
+		)
+		values
+		(
+			#{id}, 
+			#{sort}, 
+			#{context}, 
+			#{createTime}, 
+			#{createUser}, 
+			#{updateTime}, 
+			#{awardId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.baomihua.entity.BmhAwardRuleEntity">
+		update bmh_award_rule 
+		<set>
+			<if test="sort != null">`sort` = #{sort}, </if>
+			<if test="context != null">`context` = #{context}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="createUser != null">`create_user` = #{createUser}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="awardId != null">`award_id` = #{awardId}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from bmh_award_rule where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from bmh_award_rule where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
