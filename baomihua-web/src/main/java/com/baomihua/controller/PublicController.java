@@ -1,12 +1,12 @@
 package com.baomihua.controller;
 
 import com.baomihua.Utils.ToEntityObject;
-import com.baomihua.dao.BmhAwardRuleDao;
 import com.baomihua.entity.BmhAwardLogEntity;
 import com.baomihua.entity.BmhOrderManageEntity;
 import com.baomihua.entity.BmhPrizeEntity;
 import com.baomihua.entity.TextMessage;
 import com.baomihua.service.BmhAwardLogService;
+import com.baomihua.service.BmhAwardRuleService;
 import com.baomihua.service.BmhOrderManageService;
 import com.baomihua.service.BmhPrizeService;
 import com.baomihua.utils.*;
@@ -41,7 +41,7 @@ public class PublicController {
     private BmhAwardLogService bmhAwardLogService;
 
     @Autowired
-    private BmhAwardRuleDao bmhAwardRuleDao;
+    private BmhAwardRuleService bmhAwardRuleService;
 
 
     @RequestMapping("/checkAwardTimes")
@@ -58,9 +58,12 @@ public class PublicController {
      * @return
      */
     @RequestMapping("/queryRuleList")
-    public R queryRuleList(@RequestParam(value = "awardId") String awardId,HttpServletRequest request) {
+    public R queryRuleList(@RequestParam(value = "awardId" ,required = false) String awardId,HttpServletRequest request) {
         Map<String,Object> returnMap = new HashMap<>();
-        List<Map<String,Object>> map =  bmhAwardRuleDao.queryRuleList(awardId);
+        if(awardId==null&&"".equals(awardId)){
+            awardId = "";
+        }
+        List<Map<String,Object>> map =  bmhAwardRuleService.queryRuleList(awardId);
         returnMap.put("data",map);
         return R.ok(returnMap);
     }

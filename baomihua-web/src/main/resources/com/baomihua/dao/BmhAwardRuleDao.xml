@@ -20,11 +20,9 @@
 
 	<select id="queryRuleList" resultType="java.util.HashMap">
 		select t.sort,t.context from bmh_award_rule t
-		<choose>
-			<when test="awardId != null and awardId.trim() != ''">
-				where t.awardId = #{awardId}
-			</when>
-		</choose>
+		<if test="value != null">
+			where t.award_id = #{value}
+		</if>
 		 order by t.sort ASC
 	</select>
 
@@ -48,6 +46,9 @@
 	</select>
 	 
 	<insert id="save" parameterType="com.baomihua.entity.BmhAwardRuleEntity">
+		<selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+			select UUID()
+		</selectKey>
 		insert into bmh_award_rule
 		(
 			`id`, 
