@@ -1,14 +1,10 @@
 package com.baomihua.utils;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUtils {
 
 	private static Logger logger = Logger.getLogger(FileUtils.class);
+
+
+
 
 	public static void saveFile(MultipartFile uploadFile,
 			String filePath, String fileName) {
@@ -73,6 +72,74 @@ public class FileUtils {
 		bufwriter.close();
 	}
 
+
+	/**
+	 * 获取txt文件内容并按行放入list中
+	 */
+	public static List<String> getFileContext(String path) throws Exception {
+		FileReader fileReader = new FileReader(path);
+		BufferedReader bufferedReader =new BufferedReader(fileReader);
+		List<String> list =new ArrayList<String>();
+		String str=null;
+		while((str=bufferedReader.readLine())!=null) {
+			if(str.trim().length()>2) {
+				if(str.contains("@"))
+
+				list.add(str);
+			}
+		}
+		return list;
+	}
+
+	/**
+	 * 根据 标志分割字符串
+	 * @param str
+	 * @param num
+	 * @return
+	 */
+	public static String getSubStr(String falg,String str, int num) {
+		String result = "";
+		int i = 0;
+		while(i < num) {
+			int lastFirst = str.lastIndexOf(falg);
+			result = str.substring(lastFirst) + result;
+			str = str.substring(0, lastFirst);
+			i++;
+		}
+		return result.substring(1);
+	}
+
+
+	/**
+	 * 根据url 下载文件
+	 * @param str url 路径
+	 * @param toPath 文件存储路径
+	 */
+	public void downloadFileFromUrl(String str,String toPath){
+		URL url = null;
+		try {
+			url = new URL(str);
+			DataInputStream dataInputStream = new DataInputStream(url.openStream());
+
+			FileOutputStream fileOutputStream = new FileOutputStream(new File(toPath));
+			ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+			byte[] buffer = new byte[1024];
+			int length;
+
+			while ((length = dataInputStream.read(buffer)) > 0) {
+				output.write(buffer, 0, length);
+			}
+			fileOutputStream.write(output.toByteArray());
+			dataInputStream.close();
+			fileOutputStream.close();
+			logger.info("地址: "+str+" 下载成功！");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * 从文本文件中读取内容
 	 * 
