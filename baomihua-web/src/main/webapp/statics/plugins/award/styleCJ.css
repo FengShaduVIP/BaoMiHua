@@ -1,6 +1,6 @@
 body{
 	z-index: -1;
-	background-image: url(bg-img.png);
+	background-image: url(bg-img1.png);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	width: 7.5rem;
@@ -22,11 +22,15 @@ body:after{
 	}
 
 	#btn .cjBtn,.shanDeng .active,.shanDeng td{
-		width: 1.74rem;
-		height: 1.48rem;
+		width: 2.10rem;
+		height: 1.98rem;
 		background-repeat: no-repeat;
 	}
 
+	.img-sty{
+		margin: 0 auto;
+		position: relative;
+	}
 	#btn.cjBtn{
 		background-image: url(cjBtn.png);
 		background-size: 100% 100%;
@@ -51,8 +55,8 @@ body:after{
 .rule {
 	margin: 20px auto;
 	background-color: #E84A54;
-	width: 4.3rem;
-	height: 2.3rem;
+	width: 5.6rem;
+	height: 2.5rem;
 	padding: 0 .4rem;
 }
 .rule p{

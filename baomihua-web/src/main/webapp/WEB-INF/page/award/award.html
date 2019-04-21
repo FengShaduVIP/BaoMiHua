@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>抽奖</title>
+    <title>WG潮牌喜迎双11抽奖活动</title>
     <style type="text/css">
         .qimo8{ overflow:hidden;}
         .qimo8 .qimo {/*width:99999999px;*/width:8000%;}
@@ -22,19 +22,23 @@
             <table style="border-spacing:.08rem .03rem;">
                 <tbody class="background-class">
                 <tr>
-                    <td class="luck-unit luck-unit-0"><img src="${rc.contextPath}/statics/plugins/award/11.png"></td>
-                    <td class="luck-unit luck-unit-1"><img src="${rc.contextPath}/statics/plugins/award/02.png"></td>
-                    <td class="luck-unit luck-unit-2"><img src="${rc.contextPath}/statics/plugins/award/3.png"></td>
+                    <td class="luck-unit luck-unit-0">
+                        <img class="img-sty" src="${rc.contextPath}/statics/plugins/award/img/1.png">
+                    </td>
+                    <td class="luck-unit luck-unit-1">
+                        <img class="img-sty" src="${rc.contextPath}/statics/plugins/award/img/2.png">
+                    </td>
+                    <td class="luck-unit luck-unit-2"><img class="img-sty" src="${rc.contextPath}/statics/plugins/award/img/3.png"></td>
                 </tr>
                 <tr>
-                    <td class="luck-unit luck-unit-7"><img src="${rc.contextPath}/statics/plugins/award/05.png"></td>
+                    <td class="luck-unit luck-unit-7"><img class="img-sty" src="${rc.contextPath}/statics/plugins/award/img/8.png"></td>
                     <td class="cjBtn" id="btn"></td>
-                    <td class="luck-unit luck-unit-3"><img src="${rc.contextPath}/statics/plugins/award/01.png"></td>
+                    <td class="luck-unit luck-unit-3"><img class="img-sty" src="${rc.contextPath}/statics/plugins/award/img/4.png"></td>
                 </tr>
                 <tr>
-                    <td class="luck-unit luck-unit-6"><img src="${rc.contextPath}/statics/plugins/award/02.png"></td>
-                    <td class="luck-unit luck-unit-5"><img src="${rc.contextPath}/statics/plugins/award/4.png"></td>
-                    <td class="luck-unit luck-unit-4"><img src="${rc.contextPath}/statics/plugins/award/03.png"></td>
+                    <td class="luck-unit luck-unit-6"><img class="img-sty" src="${rc.contextPath}/statics/plugins/award/img/7.png"></td>
+                    <td class="luck-unit luck-unit-5"><img class="img-sty" src="${rc.contextPath}/statics/plugins/award/img/6.png"></td>
+                    <td class="luck-unit luck-unit-4"><img class="img-sty" src="${rc.contextPath}/statics/plugins/award/img/5.png"></td>
                 </tr>
                 </tbody>
             </table>
@@ -46,10 +50,11 @@
     </div>
 
     <div class="rule">
-        <p>抽奖活动规则</p>
-        <p>1、单次购买满200元,可抽奖一次单次购买满200元,可抽奖一次单次购买满200元,可抽奖一次;</p>
-        <p>2、</p>
-        <p>3、</p>
+        <p><b>WG潮牌喜迎双11活动规则</b></p>
+        <p>1、推荐5名好友有一人下单+购物满299送欧美时尚DW手镯</p>
+        <p>2、朋友圈点赞超过20+购物满299可参与一次抽奖活动</p>
+        <p>3、朋友圈点赞超过15+全场任购一件服装送COCO香水或Dior亚菲口红</p>
+        <p style="text-align: center;">活动有效期为 2018.10.25-2018.10.30</p>
     </div>
 
     <div class="play">
@@ -72,10 +77,10 @@
         </div>
     </div>
 
-    <div id="info" style="display : none">
+    <div id="awardPrice" style="display : none">
         <img src="${rc.contextPath}/statics/plugins/award/h5award.png">
-        <p><span class="price-num">一等奖</span></p>
-        <p><span class="price-name">恭喜你获得 苹果笔记本</span></p>
+        <p><span class="price-num">{{(priceNum!=null&&priceNum!=undefined&&priceNum!=-1)?awardList[priceNum].id:null}}</span></p>
+        <p><span class="price-name">恭喜你获得 {{(priceNum!=null&&priceNum!=undefined&&priceNum!=-1)?awardList[priceNum].name:null}}</span></p>
         <div class="btn-confim">
             <a href="#" onclick="closeWindow()"  style="color: #fff;text-decoration:none;">确 定</a>
         </div>

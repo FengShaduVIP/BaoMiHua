@@ -13,21 +13,21 @@ public class ToEntityObject {
         BmhOrderManageEntity obj = new BmhOrderManageEntity();
         Map<String,Object> map = arrayToMap(str);
         if(map.containsKey("奖项")){
-            obj.setPriceNum(map.get("奖项")+"");
+            obj.setPriceNum(map.get("奖项").toString().trim()+"");
         }else{
             obj.setPriceNum(6+"");
         }
         if(map.containsKey("手机号")){
-            obj.setPhoneNum(map.get("手机号")+"");
+            obj.setPhoneNum(map.get("手机号").toString().trim()+"");
         }
         if(map.containsKey("地址")){
-            obj.setOrderNum(map.get("地址")+"");
+            obj.setOrderNum(map.get("地址").toString().trim()+"");
         }
         if(map.containsKey("姓名")){
-            obj.setVipName(map.get("姓名")+"");
+            obj.setVipName(map.get("姓名").toString().trim()+"");
         }
         if(map.containsKey("次数")){
-            Integer times = Integer.parseInt(map.get("次数")+"");
+            Integer times = Integer.parseInt(map.get("次数").toString().trim()+"");
             obj.setAwardTimes(times);
         }else{
             obj.setAwardTimes(1);
@@ -40,7 +40,7 @@ public class ToEntityObject {
     private static Map<String,Object> arrayToMap(String[] str){
         Map<String,Object> map = new HashMap();
         for (int i=1;i<str.length;i++){
-            String []strData = str[i].split(":");
+            String []strData = str[i].split("@@");
             if(strData.length>0){
                 map.put(strData[0],strData[1]);
             }
